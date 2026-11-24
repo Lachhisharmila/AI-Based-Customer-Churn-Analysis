@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f6fc;
+            text-align: center;
+        }
+
+        h1 {
+            color: #173b70;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            width: 200px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+
+        h2 {
+            color: #2463a6;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Customer Churn Dashboard</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>Total Customers</h3>
+            <h2>{{ total }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>Churned Customers</h3>
+            <h2>{{ churned }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>Customers Stayed</h3>
+            <h2>{{ stayed }}</h2>
+        </div>
+
+        <div class="card">
+            <h3>Churn Rate</h3>
+            <h2>{{ rate }}%</h2>
+        </div>
+
+    </div>
+
+</body>
+</html>

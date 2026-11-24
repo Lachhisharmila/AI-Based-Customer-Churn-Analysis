@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Prediction</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eaf0f8;
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            max-width: 550px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        h3 {
+            text-align: center;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+<h2>Customer Churn Prediction</h2>
+
+<form action="/predict" method="POST">
+
+{% for field, options in {
+'Gender':['Female','Male'],
+'Senior Citizen':['Yes','No'],
+'Partner':['Yes','No'],
+'Dependents':['Yes','No'],
+'Phone Service':['Yes','No'],
+'Multiple Lines':['No','Yes','No phone service'],
+'Internet Service':['DSL','Fiber optic','No'],
+'Online Security':['Yes','No','No internet service'],
+'Online Backup':['Yes','No','No internet service'],
+'Device Protection':['Yes','No','No internet service'],
+'Tech Support':['Yes','No','No internet service'],
+'Streaming TV':['Yes','No','No internet service'],
+'Streaming Movies':['Yes','No','No internet service'],
+'Contract':['Month-to-month','One year','Two year'],
+'Paperless Billing':['Yes','No'],
+'Payment Method':['Electronic check','Mailed check','Bank transfer (automatic)','Credit card (automatic)']
+}.items() %}
+
+<label>{{ field }}</label>
+<select name="{{ field }}" required>
+{% for option in options %}
+<option value="{{ option }}">{{ option }}</option>
+{% endfor %}
+</select>
+
+{% endfor %}
+
+<label>Tenure Months</label>
+<input type="number" name="Tenure Months" min="0" max="100" required>
+
+<label>Monthly Charges</label>
+<input type="number" name="Monthly Charges" min="0" step="0.01" required>
+
+<label>Total Charges</label>
+<input type="number" name="Total Charges" min="0" step="0.01" required>
+
+<button type="submit">Predict Churn</button>
+
+</form>
+
+{% if result %}
+<h3>{{ result }}</h3>
+{% endif %}
+
+</div>
+</body>
+</html>
